@@ -1,11 +1,16 @@
+import Header from '../Header/Header'
+
 import './App.scss'
 
 function App() {
 
   return (
     <>
-      <div>
-       Hello new project
+       <div className='app'>
+        <Header />
+        <div className='app__body'>
+          
+        </div>
       </div>
     </>
   )

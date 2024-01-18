@@ -1,8 +1,5 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+//  @apply -mt-16;
 }
 
 .logo {
@@ -14,29 +11,15 @@
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.app {
+  @apply text-center;
+
+  &__body {
+    @apply pt-16 grid grid-cols-[180px_1fr] h-screen;
   }
-  to {
-    transform: rotate(360deg);
+
+  &__pages {
+    @apply px-16 py-12;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

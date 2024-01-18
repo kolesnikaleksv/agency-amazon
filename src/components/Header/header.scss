@@ -1,0 +1,43 @@
+.header {
+  @apply fixed w-full h-16 z-10 bg-white shadow-header;
+
+  &__container {
+    @apply flex justify-between items-center mx-auto my-0 h-full max-w-7xl px-5;
+  }
+
+  &__image {
+    @apply h-1/2;
+
+    img {
+      @apply h-full w-auto;
+    }
+  }
+
+  &__filter {
+		input {
+      @apply bg-white text-gray rounded-md outline-none pt-0.5 px-1 pb-1 bg-transparent border-none shadow-filter;
+		}
+		input:hover {
+      @apply shadow-filter-hover;
+		}
+		input:focus {
+      @apply text-gray border border-solid border-light-gray outline-none;
+		}
+  }
+
+  &__tools {
+    @apply flex items-end gap-5;
+  }
+
+  &__date  {
+    @apply flex flex-col items-start;
+  }
+
+  &__timer {
+    @apply flex items-center;
+
+    img {
+      @apply mr-1 h-4;
+    }
+  }
+}
