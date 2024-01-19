@@ -1,0 +1,69 @@
+.sidebar {
+  @apply flex flex-col items-center h-fit min-h-full px-7 py-12 shadow-sidebar;
+
+  &__image {
+    @apply  relative mb-10;
+
+    img {
+      @apply rounded-full relative h-24 w-24;
+    }
+
+    &--settings {
+      @apply flex justify-center items-center cursor-pointer rounded-full absolute h-8 w-8 bottom-0 right-0 bg-white;
+
+      img {
+        @apply h-4 w-4;
+      }
+    }
+
+    &--settings:hover {
+      @apply shadow-inner rotate-180 transition-transform duration-1000 ease-in;
+    }
+  }
+
+  &__nav {
+    @apply uppercase text-base font-semibold;
+
+    &--item {
+      @apply mb-1.5 border-b-2 border-white;
+
+      a {
+        @apply text-black;
+      }
+    }
+
+    &--item:has(> a.active) {
+      @apply border-b-2 border-solid border-green transition-all duration-1000 ease-in;
+    }
+  }
+}
+
+.fadeIn {
+  animation: 0.5s fadeIn forwards;
+}
+
+.fadeOut {
+  animation: 0.5s fadeOut forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+  to {
+    transform: translate(-20px, 0);
+    opacity: 0;
+  }
+}
