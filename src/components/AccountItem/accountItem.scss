@@ -1,0 +1,88 @@
+.item {
+  @apply flex flex-row gap-x-5 relative justify-between items-center border border-solid border-light-gray p-5 rounded mb-4 shadow-light;
+
+  &:hover {
+    @apply shadow-middle;
+  }
+  
+  &__token,
+  &__date,
+  &__email {
+    @apply flex flex-col items-start whitespace-nowrap;
+  }
+
+  &__title {
+    @apply w-5/12 underline underline-offset-2 text-left text-lg text-gray;
+  }
+
+  &__menu {
+    @apply flex justify-center items-center w-10 h-10 rounded-full border border-solid border-light-gray cursor-pointer;
+    
+    span {
+      @apply text-3xl;
+    }
+  }
+  
+  &__menu:hover {
+    @apply border-2 border-solid border-light-gray transition-shadow shadow-middle;
+  }
+
+  &__token {
+
+    &--description {
+      @apply text-gray text-xs;
+    }
+  }
+
+  &__date {
+    @apply flex items-center;
+
+    &--short {
+      @apply text-gray text-xs;
+    }
+  }
+
+  &__email {
+    &--description {
+      @apply text-gray text-xs;
+    }
+  }
+
+  &__delete {
+    @apply cursor-pointer;
+
+    span {
+      @apply text-gray text-xl font-semibold;
+    }
+  }
+
+  &__arrow {
+    @apply hidden absolute w-10 h-full bg-light-gray right-0 text-white;
+  }
+
+  &.half-screen {
+    @apply pr-14 gap-y-14;
+
+    .item__arrow {
+      @apply flex items-center justify-center;
+    }
+
+    .item__title,
+    .item__email,
+    .item__delete {
+      @apply hidden;
+    }
+  }
+  
+  &.active {
+    @apply shadow-middle;
+  }  
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 16
+}
