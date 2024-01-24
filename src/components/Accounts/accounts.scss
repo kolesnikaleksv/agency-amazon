@@ -1,0 +1,14 @@
+.accounts {
+
+  &__header { 
+    @apply relative flex flex-row items-center mb-12 font-bold;
+   }
+
+  &__body {
+    @apply flex flex-row;
+
+    &--profiles {
+      @apply w-8/12;
+    }
+  }
+}
