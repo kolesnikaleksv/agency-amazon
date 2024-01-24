@@ -18,3 +18,10 @@ export interface FetchedData {
 export type DataType = {
   data: FetchedData[]
 }
+
+export interface PopupActivePayload {
+  accountId: number;
+  title: string;
+  creationDate: string;
+  email: string;
+}

@@ -22,12 +22,7 @@ export const fetchCampaignData = (fetchData: (url: string) => Promise<any>) => (
     .then(data => dispatch(campaignFetched(data)))
     .catch(() => dispatch(campaignFetchingError()));
 }
-// interface PopupActivePayload {
-//   accountId: number;
-//   title: string;
-//   creationDate: string;
-//   email: string;
-// }
+
 export const accountsFetching = createAction('ACCOUNTS_FETCHING');
 export const accountsFetched = createAction<any>('ACCOUNTS_FETCHED');
 export const accountsFetchingError = createAction('ACCOUNTS_FETCHING_ERROR');
