@@ -1,0 +1,67 @@
+.current-account {
+  @apply flex flex-col relative border border-solid border-light-gray shadow-light ml-5;
+
+  &__head {
+    @apply p-5 text-left;
+
+    &--title {
+      @apply font-semibold mb-5;
+      
+    }
+
+    &--add-block {
+      @apply flex items-center;
+
+      span {
+        @apply text-green;
+      }
+    }
+  }
+
+  .current-account-item {
+    @apply grid gap-3.5 grid-cols-[1fr_2fr_6fr_4fr_1fr] text-xs items-center text-left px-5 py-2.5;
+
+    &:hover {
+      @apply hover:shadow-middle;
+    }
+    
+    &__title {
+      @apply flex flex-col;
+    }
+  
+    &__cirle {
+      @apply w-2.5 h-2.5 rounded-full bg-dark-green;
+    }
+
+    &__cirle.green {
+      @apply w-2.5 h-2.5 rounded-full bg-dark-green;
+    }
+
+    &__cirle.yellow {
+      @apply bg-yellow;
+    }
+  
+    &__image {
+      @apply relative p-[0px_0px_85%_0px];
+  
+      img {
+        @apply absolute top-0 left-0 w-full h-full object-cover;
+      }
+    }
+  
+    &__title {
+  
+      span {
+        @apply whitespace-nowrap;
+      }
+    }
+  
+    &__date {
+      @apply text-center;
+    }
+  
+    &__delete span {
+      @apply text-base;
+    }
+  }
+}
