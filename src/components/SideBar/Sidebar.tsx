@@ -20,7 +20,7 @@ const Sidebar = () => {
             <NavLink to='profiles' data-testid='groups-link'>Profiles</NavLink>
           </li>
           <li className='sidebar__nav--item'>
-            <NavLink to='campaings' data-testid="product-link">Campaings</NavLink>
+            <NavLink to='campaigns' data-testid="product-link">Campaigns</NavLink>
           </li>
         </ul>
     </div>

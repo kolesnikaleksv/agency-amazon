@@ -3,7 +3,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import { fetchAccounts, closeActiveAccount } from '../../actions/actions';
 import CureentAccount from '../CurrentAccount/CurrentAccount';
 import AccountsList from '../AccountsLIst/AccountsList';
-import useDataService from '../sevices/DataService';
+import useDataService from '../services/DataService';
 import Popup from '../Popup/Popup';
 import { AppDispatch, RootState } from '../../store/store';
 
