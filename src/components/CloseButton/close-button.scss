@@ -1,0 +1,23 @@
+.close-button {
+  @apply flex justify-center items-center w-10 h-10 cursor-pointer absolute -top-5 -right-5;
+
+  &__circle {
+    @apply w-full h-full bg-white rounded-full relative  shadow-[5px_5px_14px_0px_#0000005e];
+
+    &:hover {
+      @apply shadow-[7px_7px_18px_0px_#0000005e] border border-solid border-light-gray;
+    }
+
+    span {
+      @apply absolute w-1/2 h-0.5 bg-gray pointer-events-none;
+    }
+    
+    &--line-1 {
+      @apply top-1/2 left-1/4 rotate-45;
+    }
+    
+    &--line-2 {
+      @apply top-1/2 left-1/4 -rotate-45;
+    }
+  }
+}

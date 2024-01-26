@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Accounts from '../Accounts/Accounts';
+import CampaignPage from '../CampaignPage/CampaignPage';
+import Profiles from '../Profiles/profiles';
+import Campaigns from '../Campaigns/Campaigns';
 
 const NavigationMenu = () => {
   const location = useLocation();
@@ -23,6 +26,9 @@ const NavigationMenu = () => {
       >
       <Routes location={displayLocation}>
         <Route path="/" element={<Accounts/>} />
+        <Route path='campaigns/:id' element={<CampaignPage />} />
+        <Route path='profiles' element={<Profiles />} />
+        <Route path='campaigns' element={<Campaigns/>} />
       </Routes>
     </div>
   )
