@@ -1,0 +1,58 @@
+.popup {
+  @apply flex justify-center items-center fixed top-0 left-0 w-full h-full bg-dark-gray;
+
+  &__container {
+    @apply bg-white relative rounded-md;
+  }
+
+  &__question {
+    @apply p-5 text-start text-lg font-bold;
+  }
+
+  &__footer {
+    @apply flex justify-end gap-x-4 bg-green px-5 pt-4 pb-5 rounded-b-md;
+
+    .popup-button {
+      @apply rounded-2xl border-none text-sm py-2 px-6;
+
+      &:hover {
+        @apply shadow-light;
+      }
+      &--discard {
+        @apply text-white bg-green;
+      }
+
+      &--delete {
+        @apply flex items-center gap-x-1 text-red shadow-light;
+
+        &:hover {
+          @apply shadow-middle;
+        }
+
+        span {
+          @apply text-base;
+        }
+      }
+    }
+  }
+
+  .popup-account {
+    @apply flex flex-row justify-between gap-x-4 px-5 mb-2.5 items-center;
+
+    &__count {
+
+      &--description,
+      &--count {
+        @apply p-0 m-0;
+      }
+
+      &--description {
+        @apply text-gray;
+      }
+    }
+
+    &__title {
+      @apply max-w-xs font-semibold text-left;
+    }
+  }
+}
