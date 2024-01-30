@@ -1,0 +1,47 @@
+.profile-item {
+  @apply grid gap-x-3.5 grid-cols-[0.5fr_2fr_5fr_4fr_2fr_1fr_4fr_0.5fr] text-[10px] items-center text-left
+  border border-solid border-light-gray px-5 py-2.5 rounded mb-4 shadow-light;
+
+  &:hover {
+    @apply shadow-middle;
+  }
+
+  &__title,
+  &__date,
+  &__status-date {
+    @apply flex flex-col;
+  }
+
+  &__cirle {
+    @apply w-2.5 h-2.5 rounded-full;
+  }
+  &__cirle.green {
+    @apply bg-dark-green;
+  }
+
+  &__image {
+    @apply relative p-[0_0_85%_0];
+
+    img {
+      @apply absolute top-0 left-0 w-full h-full object-cover;
+    }
+  }
+
+  &__title {
+
+    span {
+      @apply whitespace-nowrap;
+    }
+  }
+
+  &__date {
+    @apply text-center;
+  }
+
+  &__delete span {
+    @apply text-base;
+  }
+}
+.yellow {
+  @apply text-yellow;
+}
