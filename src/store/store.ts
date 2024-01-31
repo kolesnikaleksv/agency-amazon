@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import accountsReducer from '../reducers/accountsReducer';
+import profilesReducer from '../components/Profiles/profilesSlice';
+import campaignReducer from '../reducers/campaignsReducer';
 
 const store = configureStore({
-  reducer: {accountsReducer},
+  reducer: {accountsReducer, profilesReducer, campaignReducer},
+
 
   middleware: getDefaultMiddleware => getDefaultMiddleware(),
   devTools: process.env.NODE_ENV !== 'production',

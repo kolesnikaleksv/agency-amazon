@@ -9,13 +9,6 @@ export const fetchAccounts = (fetchData: (url: string) => Promise<any>) => (disp
   .catch(() => dispatch(accountsFetchingError()));
 }
 
-export const fetchProfiles = (fetchData: (url: string) => Promise<any>) => (dispatch: Dispatch) => {
-  dispatch(profilesFetching());
-  fetchData('http://localhost:5000/profiles')
-  .then(data => dispatch(profilesFetched(data)))
-  .catch(() => dispatch(profilesFetchingError()));
-}
-
 export const fetchCampaignData = (fetchData: (url: string) => Promise<any>) => (dispatch: Dispatch) => {
   dispatch(campaignFetching());
   fetchData(`http://localhost:5000/campaigns`)
@@ -30,11 +23,6 @@ export const activeAccount = createAction<any>('ACTIVE_ACCOUNT');
 export const closeActiveAccount = createAction('CLOSE_ACTIVE_ACCOUNT');
 export const popupActive = createAction<PopupActivePayload>('POPUP_ACTIVE');
 export const closePopup = createAction('CLOSE_POPUP');
-
-export const profilesFetching = createAction('PROFILES_FETCHING');
-export const profilesFetched = createAction<any>('PROFILES_FETCHED');
-export const profilesFetchingError = createAction('PROFILES_FETCHING_ERROR');
-export const activeFilterChanged = createAction ('ACTIVE_FILTER_CHANGED');
 
 export const campaignFetching = createAction('PROFILE_FETCHING');
 export const campaignFetched = createAction<any>('PROFILE_FETCHED');

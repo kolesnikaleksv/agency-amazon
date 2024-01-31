@@ -25,3 +25,19 @@ export interface PopupActivePayload {
   creationDate: string;
   email: string;
 }
+
+export interface Iprofile {
+  id: number;
+  photo: string;
+  country: string;
+  marketPlace: string;
+  belongAccountId: number;
+  date: string
+}
+
+export interface ICampaign {
+  clicks: number;
+  cost: number;
+  date: string;
+  id: number;
+}

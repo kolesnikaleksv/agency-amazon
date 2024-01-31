@@ -2,11 +2,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import CloseButton from '../CloseButton/CloseButton';
-import useDataService from '../sevices/DataService';
-import getDate from '../sevices/getDate';
+import useDataService from '../services/DataService';
+import getDate from '../services/getDate';
 import { AppDispatch, RootState } from '../../store/store';
-import { fetchProfiles } from '../../actions/actions';
+// import { fetchProfiles } from '../../actions/actions';
 import { NavLink } from 'react-router-dom';
+import { fetchProfiles } from '../Profiles/profilesSlice';
 
 import './current-account.scss';
 
@@ -23,7 +24,8 @@ const CureentAccount: React.FC<CurrentAccountProps> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(fetchProfiles(fetchData))
+    // dispatch(fetchProfiles(fetchData))
+    dispatch(fetchProfiles())
   },[])
 
   return (
@@ -44,7 +46,7 @@ const CureentAccount: React.FC<CurrentAccountProps> = (props) => {
               const {country, photo, marketPlace, id, date} = item;
               return (
               <li key={uuidv4()}>
-                <NavLink to={`campaigns/${id}`}>
+                <NavLink to={`profiles/${id}`}>
                   <div className='current-account-item'>
                     <span>{id}</span>
                     <div className='current-account-item__image'>

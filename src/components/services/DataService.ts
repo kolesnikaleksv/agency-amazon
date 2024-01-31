@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DataType } from "../../types";
+import { DataType, Iprofile } from "../../types";
 
 export interface FetchedData {
   accountId: number;
@@ -24,9 +24,22 @@ const useDataService = () => {
 
   const fetchData = async (path: string) => {
     try {
-      const {data , status} = await axios.get<DataType | FetchedData[] | ICampaign>(path);
+      const {data , status} = await axios.get<DataType | ICampaign | Iprofile[]>(path);
       if (status === 200) {
-        return data; 
+        return data;
+      } else {
+        throw new Error('Failed to fetch data');
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  const fetchDataId = async (path: string, id:string) => {
+    try {
+      const {data , status} = await axios.get<Iprofile>(`${path}/${id}`);
+      if (status === 200) {
+        return data;
       } else {
         throw new Error('Failed to fetch data');
       }
@@ -36,7 +49,8 @@ const useDataService = () => {
   }
 
   return {
-    fetchData
+    fetchData,
+    fetchDataId
   }
 }
 
