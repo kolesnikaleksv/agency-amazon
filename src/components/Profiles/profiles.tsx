@@ -1,20 +1,50 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import { fetchProfiles, filterChanged, searchFilter } from './profilesSlice';
-import ProductList from '../ProfileLIst/ProfileList';
+import ProfileList from '../ProfileLIst/ProfileList';
+import AppPaginate from '../AppPaginate';
+import { createSelector } from '@reduxjs/toolkit';
+import { Iprofile } from '../../types';
 
 import './profiles.scss';
 
 const Profiles = () => {
   const currentProfiles = useSelector((state: RootState) => state.profilesReducer.profiles);
   const activeFilter = useSelector((state: RootState) => state.profilesReducer.activeFilter);
+  const [limitedProfiles, setProducts] = useState<Iprofile[]>([]);
+  const filteredProfilesSelector = createSelector(
+    (state: RootState) => state.profilesReducer.activeFilter,
+    (state: RootState) => state.profilesReducer.profiles,
+    (state: RootState) => state.profilesReducer.searchFilter,
+    (activeFilter, profiles, searchFilter) => {
+      if(activeFilter === 'All countries' && searchFilter === '') {
+          return profiles;
+        } 
+        else if(activeFilter !== 'All countries' && searchFilter === ''){
+          return profiles.filter(item => item.country === activeFilter);
+        } 
+        else if (activeFilter === 'All countries' && searchFilter !== ''){
+          return profiles.filter((item) =>
+          item.country.toLowerCase().includes(searchFilter.toLowerCase())
+        );
+        } 
+        else if(activeFilter !== 'All countries' || searchFilter !== ''){
+          return profiles.filter((item) => item.country === activeFilter && item.country.toLowerCase().includes(searchFilter.toLowerCase()))
+        } 
+        else {
+          throw new Error('Something went wrong!')
+        }
+    }
+  )
 
+  const filteredProfiles = useSelector(filteredProfilesSelector);
+ 
   const useAppDispatch = () => useDispatch<AppDispatch>()
   const dispatch: AppDispatch = useAppDispatch();
   
-  const typeSet = new Set<string>();
-  currentProfiles.forEach(item => { 
+  const typeSet = new Set<string>(['All countries']);
+  currentProfiles.forEach(item => {
     typeSet.add(item.country)
   });
 
@@ -23,11 +53,11 @@ const Profiles = () => {
       {item}
     </option>
   ));
-  
+
   useEffect(() => {
     dispatch(fetchProfiles())
     // eslint-disable-next-line
-  },[])
+  },[activeFilter])
 
   return (
     <div className='profile' data-testid="profile-page">
@@ -36,11 +66,6 @@ const Profiles = () => {
         <form action="#">
           <label htmlFor="type">Type of products:</label>
           <select name="types" id="type" onChange={(e) => dispatch(filterChanged(e.target.value))}>
-            {
-              activeFilter === 'all'
-              ? <option value="all">Select country</option>
-              : <><option value="all">{ activeFilter}</option><option value="all">Select country</option></>
-            }
             {optionsList}
           </select>
         </form>
@@ -58,7 +83,12 @@ const Profiles = () => {
           </div>
 			</div>
       <div className='profile__body'>
-        <ProductList />
+        <ProfileList limitedProfiles={filteredProfiles.length > 5 ? limitedProfiles : filteredProfiles} />
+        {
+          filteredProfiles.length > 5
+          ? <AppPaginate filteredProfiles={filteredProfiles} setProducts={(p) => setProducts(p)}/>
+          : null
+        }
 			</div>
     </div>
   )

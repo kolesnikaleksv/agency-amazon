@@ -2,38 +2,17 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import getDate from "../services/getDate";
 import Spinner from "../spinner/Spinner";
-import { createSelector } from "@reduxjs/toolkit";
+import React from "react";
+import { Iprofile } from "../../types";
+import { NavLink } from "react-router-dom";
 
 import './profile-item.scss';
+interface ProfileListProps {
+  limitedProfiles: Iprofile[] ;
+}
 
-const ProfileList = () => {
+const ProfileList: React.FC<ProfileListProps> = ({limitedProfiles}) => {
   const profilesLoadingStatus = useSelector((state: RootState) => state.profilesReducer.loadingStatus); 
-  const filteredProfilesSelector = createSelector(
-    (state: RootState) => state.profilesReducer.activeFilter,
-    (state: RootState) => state.profilesReducer.profiles,
-    (state: RootState) => state.profilesReducer.searchFilter,
-    (activeFilter, profiles, searchFilter) => {
-      if(activeFilter === 'all' && searchFilter === '') {
-          return profiles;
-        } 
-        else if(activeFilter !== 'all' && searchFilter === ''){
-          return profiles.filter(item => item.country === activeFilter);
-        } 
-        else if (searchFilter !== '' && activeFilter === 'all'){
-          return profiles.filter((item) =>
-          item.country.toLowerCase().includes(searchFilter.toLowerCase())
-        );
-        } 
-        else if(activeFilter !== 'all' || searchFilter !== ''){
-          return profiles.filter((item) => item.country === activeFilter && item.country.toLowerCase().includes(searchFilter.toLowerCase()))
-        } 
-        else {
-          throw new Error('Something went wrong!')
-        }
-    }
-  )
-
-  const filteredProfiles = useSelector(filteredProfilesSelector);
 
   if(profilesLoadingStatus === 'error') {
     return (
@@ -44,21 +23,25 @@ const ProfileList = () => {
       <Spinner/>
     )
   }
-
-  if(!filteredProfiles.length) {
+   if(!limitedProfiles) {
+    return "something wetn wrong"
+   }
+  if(!limitedProfiles.length) {
     return(
       <div>There are no profiles of the selected type</div> 
     )
   }
   
-  const item = filteredProfiles.map(item => {
+  const item = limitedProfiles.map(item => {
     const {id, belongAccountId, country, date, marketPlace, photo } = item;
     return (
       <li key={id}>
         <div className='profile-item'>
           <div className="profile-item__cirle green"></div>
           <div className='profile-item__image'>
+          <NavLink to={`/profiles/${id}`}>
             <img src={photo} alt='user' />
+          </NavLink>
           </div>
           <div className='profile-item__title'>
             {date}

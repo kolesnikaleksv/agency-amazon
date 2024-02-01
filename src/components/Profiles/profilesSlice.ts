@@ -14,7 +14,7 @@ const initialState: IState = {
   profiles: [],
   profile: null,
   loadingStatus: 'idle',
-  activeFilter: 'all',
+  activeFilter: 'All countries',
   searchFilter: ''
 }
 const isIprofile = (arr: DataType | ICampaign | Iprofile[]): arr is Iprofile[] => {

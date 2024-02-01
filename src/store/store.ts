@@ -5,8 +5,6 @@ import campaignReducer from '../reducers/campaignsReducer';
 
 const store = configureStore({
   reducer: {accountsReducer, profilesReducer, campaignReducer},
-
-
   middleware: getDefaultMiddleware => getDefaultMiddleware(),
   devTools: process.env.NODE_ENV !== 'production',
 })
