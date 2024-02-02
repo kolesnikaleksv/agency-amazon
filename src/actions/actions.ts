@@ -1,6 +1,6 @@
 import { createAction } from "@reduxjs/toolkit";
 import { Dispatch } from 'redux';
-import { PopupActivePayload } from "../types";
+import { IAccount, ICampaign } from "../types";
 
 export const fetchAccounts = (fetchData: (url: string) => Promise<any>) => (dispatch: Dispatch) => {
   dispatch(accountsFetching());
@@ -21,9 +21,9 @@ export const accountsFetched = createAction<any>('ACCOUNTS_FETCHED');
 export const accountsFetchingError = createAction('ACCOUNTS_FETCHING_ERROR');
 export const activeAccount = createAction<any>('ACTIVE_ACCOUNT');
 export const closeActiveAccount = createAction('CLOSE_ACTIVE_ACCOUNT');
-export const popupActive = createAction<PopupActivePayload>('POPUP_ACTIVE');
+export const popupActive = createAction<IAccount>('POPUP_ACTIVE');
 export const closePopup = createAction('CLOSE_POPUP');
 
 export const campaignFetching = createAction('PROFILE_FETCHING');
-export const campaignFetched = createAction<any>('PROFILE_FETCHED');
+export const campaignFetched = createAction<ICampaign[]>('PROFILE_FETCHED');
 export const campaignFetchingError = createAction('PROFILE_FETCHING_ERROR');

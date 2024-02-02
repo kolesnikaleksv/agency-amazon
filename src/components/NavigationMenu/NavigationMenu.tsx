@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Accounts from '../Accounts/Accounts';
-import CampaignPage from '../CampaignPage/CampaignPage';
+import SingleCampaignPage from '../SingleCampaignPage/SingleCampaignPage';
 import Profiles from '../Profiles/profiles';
 import Campaigns from '../Campaigns/Campaigns';
+import SingleProfilePage from '../SingleProfilePage/SingleProfilePage';
 
 const NavigationMenu = () => {
   const location = useLocation();
@@ -26,9 +27,11 @@ const NavigationMenu = () => {
       >
       <Routes location={displayLocation}>
         <Route path="/" element={<Accounts/>} />
-        <Route path='campaigns/:id' element={<CampaignPage />} />
+        <Route path='campaigns/:id' element={<SingleCampaignPage />} />
         <Route path='profiles' element={<Profiles />} />
+        <Route path='profiles/:id' element={<SingleProfilePage />} />
         <Route path='campaigns' element={<Campaigns/>} />
+        <Route path='campaigns/:id' element={<SingleCampaignPage/>} />
       </Routes>
     </div>
   )

@@ -1,24 +1,5 @@
 import axios from "axios";
-import { DataType, Iprofile } from "../../types";
-
-export interface FetchedData {
-  accountId: number;
-  title: string;
-  creationDate: string;
-  authToken: string;
-  email: string;
-}
-
-export type ProfileType = {
-  data: FetchedData[]
-}
-
-export interface ICampaign {
-  clicks: number;
-  cost: number;
-  date: string;
-  id: number;
-}
+import { DataType, ICampaign, Iprofile } from "../../types";
 
 const useDataService = () => {
 

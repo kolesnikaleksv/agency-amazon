@@ -7,19 +7,14 @@ import {
   closeActiveAccount,
   popupActive, 
   closePopup} from "../actions/actions";
+import { IAccount } from "../types";
 
-  interface PopupActivePayload {
-    accountId: number;
-    title: string;
-    creationDate: string;
-    email: string;
-  }
 interface IState {
-  accounts: any[],
+  accounts: IAccount[],
   accountsLoadingStatus: 'idle'  | 'loading' | 'error',
   activeAccount: null | number,
   popupActive: boolean,
-  popupItem: PopupActivePayload | null
+  popupItem: IAccount | null
 }
 
 const initialState: IState = {
@@ -35,20 +30,20 @@ const accountsReducer = createReducer(initialState, (builder) => {
     .addCase(accountsFetching, state => {
       state.accountsLoadingStatus = 'loading';
     })
-    .addCase(accountsFetched, (state, action: PayloadAction<any>) => {
+    .addCase(accountsFetched, (state, action: PayloadAction<IAccount[]>) => {
       state.accounts = action.payload;
       state.accountsLoadingStatus = 'idle';
     })
     .addCase(accountsFetchingError, state => {
       state.accountsLoadingStatus = 'error';
     })
-    .addCase(activeAccount, (state, action: PayloadAction<any>) => {
+    .addCase(activeAccount, (state, action: PayloadAction<number>) => {
       state.activeAccount = action.payload;
     })
     .addCase(closeActiveAccount, (state) => {
       state.activeAccount = null;
     })
-    .addCase(popupActive, (state, action )=> {
+    .addCase(popupActive, (state, action: PayloadAction<IAccount> )=> {
       state.popupActive = true;
       state.popupItem = action.payload;
     })

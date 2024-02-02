@@ -1,0 +1,26 @@
+.profile-page {
+  .profile-card {
+    h1 {
+      @apply text-2xl font-bold my-2.5 text-gray text-left;
+    }
+
+    &__item {
+      @apply flex flex-row shadow-lg;
+
+      img {
+        @apply w-24;
+      }
+    }
+
+    &__text {
+      @apply text-left ml-5;
+    }
+    .campaigns-list {
+      @apply mt-5;
+
+      .line {
+        @apply w-11/12 bg-light-gray h-0.5 mx-auto my-4;
+      }
+    }
+  }
+}

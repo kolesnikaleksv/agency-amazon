@@ -7,7 +7,11 @@ export interface AccountItemProps {
   authToken: string;
 }
 
-export interface FetchedData {
+export type DataType = {
+  data: IAccount[]
+}
+
+export type IAccount = {
   accountId: number;
   title: string;
   creationDate: string;
@@ -15,18 +19,7 @@ export interface FetchedData {
   email: string;
 }
 
-export type DataType = {
-  data: FetchedData[]
-}
-
-export interface PopupActivePayload {
-  accountId: number;
-  title: string;
-  creationDate: string;
-  email: string;
-}
-
-export interface Iprofile {
+export type Iprofile = {
   id: number;
   photo: string;
   country: string;
@@ -35,9 +28,10 @@ export interface Iprofile {
   date: string
 }
 
-export interface ICampaign {
+export type ICampaign = {
+  id: number;
   clicks: number;
   cost: number;
   date: string;
-  id: number;
+  belongProfileId: string;
 }

@@ -1,6 +1,6 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { PayloadAction, createReducer } from "@reduxjs/toolkit";
 import { campaignFetched, campaignFetching, campaignFetchingError } from "../actions/actions";
-import { ICampaign } from "../components/services/DataService";
+import { ICampaign } from "../types";
 
 type ICampaigns = {
   campaigns: ICampaign[];
@@ -16,7 +16,7 @@ const campaignReducer = createReducer(initialState, (builder) => {
     .addCase(campaignFetching, state => {
       state.campaignLoadingStatus = 'loading';
     })
-    .addCase(campaignFetched, (state, action) => {
+    .addCase(campaignFetched, (state, action: PayloadAction<ICampaign[]>) => {
       state.campaignLoadingStatus = 'idle';
       state.campaigns = action.payload;
     })
