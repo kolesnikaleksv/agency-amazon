@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import useDataService from "../services/DataService";
-import { Iprofile, DataType, ICampaign } from "../../types";
+import { IProfile, ICampaign, IAccount } from "../../types";
 
 interface IState {
-  profiles: Iprofile[];
-  profile: null | Iprofile;
+  profiles: IProfile[];
+  profile: null | IProfile;
   loadingStatus: 'idle' | 'error' | 'loading';
   activeFilter: string;
   searchFilter: string;
@@ -17,20 +17,19 @@ const initialState: IState = {
   activeFilter: 'All countries',
   searchFilter: ''
 }
-const isIprofile = (arr: DataType | ICampaign | Iprofile[]): arr is Iprofile[] => {
-  return Array.isArray(arr)
-}
 
+ const isProfile = (item: IProfile | ICampaign | IAccount): item is IProfile => {
+    return 'id' in item && 'photo' in item && 'country' in item && 'marketPlace' in item;
+  };
 export const fetchProfiles = createAsyncThunk(
   "profiles/fetchPros",
  async () => {
   const {fetchData} = useDataService();
   const data = await fetchData('http://localhost:5000/profiles');
-  
-  if(isIprofile(data)) {
+  if(data.every(isProfile)) {
     return data.sort((a, b) => a.country.localeCompare(b.country))
   } else {
-    throw new Error('something went wrong')
+    throw new Error('Something went wrong')
   }
  }
 );

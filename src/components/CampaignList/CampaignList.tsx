@@ -17,20 +17,20 @@ const CampaignList: React.FC<CampaignListProps> = ({campaigns}): JSX.Element => 
     return (
     <li key={uuidv4()}>
       <NavLink to={`/campaigns/${id}`}>
-        <div className='current-account-item'>
+        <div className='current-campaign-item'>
           <span>{id}</span>
-          <div className='current-account-item__click'>
+          <div className='current-campaign-item__click flex flex-col-reverse'>
             <span>clicks</span>
             <span>{clicks}</span>
           </div>
-          <div className='current-account-item__title'>
-            {belongProfileId}
+          <div className='current-campaign-item__title'>
+            <span>Belong to profile: {belongProfileId}</span>
             <span>{date ? getDate(date, 'fullDate') : 'no date'}</span>
           </div>
-          <div className='current-account-item__satus'>
+          <div className='current-campaign-item__satus'>
             <span>{cost}</span>
           </div>
-          <div className='current-account-item__delete'>
+          <div className='current-campaign-item__delete'>
             <span className="material-symbols-outlined">
               delete
             </span>
@@ -41,7 +41,7 @@ const CampaignList: React.FC<CampaignListProps> = ({campaigns}): JSX.Element => 
     )
   })
   return (
-    <ul className='current-account__list'>
+    <ul className='current-campaign__list'>
       {
         items.length
         ? items

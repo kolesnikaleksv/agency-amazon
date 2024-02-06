@@ -3,12 +3,12 @@ import { RootState } from "../../store/store";
 import getDate from "../services/getDate";
 import Spinner from "../spinner/Spinner";
 import React from "react";
-import { Iprofile } from "../../types";
+import { IProfile } from "../../types";
 import { NavLink } from "react-router-dom";
 
 import './profile-item.scss';
 interface ProfileListProps {
-  limitedProfiles: Iprofile[] ;
+  limitedProfiles: IProfile[] ;
 }
 
 const ProfileList: React.FC<ProfileListProps> = ({limitedProfiles}) => {
@@ -54,8 +54,9 @@ const ProfileList: React.FC<ProfileListProps> = ({limitedProfiles}) => {
           <div className='profile-item__group-name'>
             {country}
           </div>
-          <div className='profile-item__owner'>
-            {belongAccountId}
+          <div className='profile-item__owner flex flex-col'>
+            <span>Belong account: {belongAccountId}</span>
+            <span>Profile id: {id}</span>
           </div>
           <div className='profile-item__date'>
             <span className='profile-item__date profile-item__date--short'>{getDate(date, 'shortDate')}</span>

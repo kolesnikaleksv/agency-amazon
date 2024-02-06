@@ -12,7 +12,7 @@ import { IAccount } from "../types";
 interface IState {
   accounts: IAccount[],
   accountsLoadingStatus: 'idle'  | 'loading' | 'error',
-  activeAccount: null | number,
+  activeAccount: string,
   popupActive: boolean,
   popupItem: IAccount | null
 }
@@ -20,7 +20,7 @@ interface IState {
 const initialState: IState = {
   accounts: [],
   accountsLoadingStatus: 'idle',
-  activeAccount: null,
+  activeAccount: '',
   popupActive: false,
   popupItem: null
 }
@@ -37,11 +37,11 @@ const accountsReducer = createReducer(initialState, (builder) => {
     .addCase(accountsFetchingError, state => {
       state.accountsLoadingStatus = 'error';
     })
-    .addCase(activeAccount, (state, action: PayloadAction<number>) => {
+    .addCase(activeAccount, (state, action: PayloadAction<string>) => {
       state.activeAccount = action.payload;
     })
     .addCase(closeActiveAccount, (state) => {
-      state.activeAccount = null;
+      state.activeAccount = '';
     })
     .addCase(popupActive, (state, action: PayloadAction<IAccount> )=> {
       state.popupActive = true;

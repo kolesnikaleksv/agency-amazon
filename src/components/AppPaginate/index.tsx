@@ -1,7 +1,7 @@
 import { Box, Pagination } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import limitItemsService from "../services/limitItemsService";
-import { Iprofile } from "../../types";
+import { IAccount, ICampaign, IProfile } from "../../types";
 
 interface IPagination {
   count: number;
@@ -9,27 +9,48 @@ interface IPagination {
   to: number;
 }
 
-interface AppPaginationProps {
-  filteredProfiles: Iprofile[];
-  setProducts: (data: Iprofile[]) => void;
+interface AppPaginationProps<T> {
+  filteredProfiles: T[];
+  setProducts: (data: T[]) => void;
 }
-
+export type ProductTypes = IAccount | IProfile | ICampaign;
 const elelemPerPage: number = 5;
 
-const AppPaginate: React.FC<AppPaginationProps> = ({filteredProfiles, setProducts}) => {
+  const AppPaginate = ({filteredProfiles, setProducts}: {filteredProfiles: IAccount[] | IProfile[] | ICampaign[], setProducts: (data: IAccount[] | IProfile[] | ICampaign[]) => void}) => {
+
 
   const [pagination, setPagination] = useState<IPagination>({
     count: 0,
     from: 0,
     to: elelemPerPage
   })
-  
-  useEffect(() => {
+
+  const limitedServiceData = () => {
     limitItemsService.getData(pagination.from, pagination.to, filteredProfiles)
-      .then(responce => {
-        setPagination({...pagination, count: responce.count})
-        setProducts(responce.data)
-      })
+    .then((response) => {
+      setPagination({ ...pagination, count: response.count });
+      setProducts(response.data);
+    });
+  }
+
+  useEffect(() => {
+    if(!filteredProfiles.length) {
+      return
+    }
+    switch(filteredProfiles[0].name) {
+      case 'account':
+        limitedServiceData();
+        break;
+      case 'campaign':
+        limitedServiceData();
+        break;
+      case 'profile':
+        limitedServiceData();
+        break;
+      default:
+        const defProd: never = filteredProfiles[0];
+        console.log('Oooups!')
+    }
   },[pagination.from, pagination.to, filteredProfiles.length]);
 
   const handleChangePage = (event: React.ChangeEvent<unknown>, page: number) => {

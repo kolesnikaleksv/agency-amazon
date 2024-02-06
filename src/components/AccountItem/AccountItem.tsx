@@ -11,7 +11,7 @@ const AccountItem: React.FC<AccountItemProps> = (props) => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const { title, creationDate, email, authToken, onOpen, accountId} = props;
+  const { title, creationDate, email, authToken, onOpen, accountId, name} = props;
 
   return (
     <div className={`item ${activeItemId ? 'half-screen': ''} ${activeItemId === accountId ? 'active' : ''}`}>
@@ -35,7 +35,7 @@ const AccountItem: React.FC<AccountItemProps> = (props) => {
         <span className='item__email item__email'>{email}</span>
         <span className='item__email item__email--description'>email</span>
       </div>
-      <div className='item__delete' onClick={() => dispatch(popupActive({accountId, title, creationDate, email, authToken}))}>
+      <div className='item__delete' onClick={() => dispatch(popupActive({accountId, title, creationDate, email, authToken, name}))}>
         <span className="material-symbols-outlined">
           delete
         </span>

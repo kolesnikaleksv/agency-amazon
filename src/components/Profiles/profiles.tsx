@@ -5,14 +5,14 @@ import { fetchProfiles, filterChanged, searchFilter } from './profilesSlice';
 import ProfileList from '../ProfileLIst/ProfileList';
 import AppPaginate from '../AppPaginate';
 import { createSelector } from '@reduxjs/toolkit';
-import { Iprofile } from '../../types';
+import { IProfile } from '../../types';
 
 import './profiles.scss';
 
 const Profiles = () => {
   const currentProfiles = useSelector((state: RootState) => state.profilesReducer.profiles);
   const activeFilter = useSelector((state: RootState) => state.profilesReducer.activeFilter);
-  const [limitedProfiles, setProducts] = useState<Iprofile[]>([]);
+  const [limitedProfiles, setProducts] = useState<IProfile[]>([]);
   const filteredProfilesSelector = createSelector(
     (state: RootState) => state.profilesReducer.activeFilter,
     (state: RootState) => state.profilesReducer.profiles,
@@ -86,7 +86,7 @@ const Profiles = () => {
         <ProfileList limitedProfiles={filteredProfiles.length > 5 ? limitedProfiles : filteredProfiles} />
         {
           filteredProfiles.length > 5
-          ? <AppPaginate filteredProfiles={filteredProfiles} setProducts={(p) => setProducts(p)}/>
+          ? <AppPaginate filteredProfiles={filteredProfiles} setProducts={(p) => setProducts(p as IProfile[])}/>
           : null
         }
 			</div>

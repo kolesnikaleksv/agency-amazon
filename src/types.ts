@@ -1,10 +1,11 @@
 export interface AccountItemProps {
-  accountId: number;
+  accountId: string;
   title: string;
   creationDate: string;
   email: string;
   onOpen: () => {};
   authToken: string;
+  name: 'account'
 }
 
 export type DataType = {
@@ -12,20 +13,22 @@ export type DataType = {
 }
 
 export type IAccount = {
-  accountId: number;
+  accountId: string;
   title: string;
   creationDate: string;
   authToken: string;
   email: string;
+  name: "account";
 }
 
-export type Iprofile = {
+export type IProfile = {
   id: number;
   photo: string;
   country: string;
   marketPlace: string;
-  belongAccountId: number;
-  date: string
+  belongAccountId: string;
+  date: string;
+  name: "profile";
 }
 
 export type ICampaign = {
@@ -34,4 +37,5 @@ export type ICampaign = {
   cost: number;
   date: string;
   belongProfileId: string;
+  name: "campaign"
 }

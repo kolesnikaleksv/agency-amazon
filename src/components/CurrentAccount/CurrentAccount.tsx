@@ -7,20 +7,20 @@ import { AppDispatch, RootState } from '../../store/store';
 import { NavLink } from 'react-router-dom';
 import { fetchProfiles } from '../Profiles/profilesSlice';
 import AppPaginate from '../AppPaginate';
-import { Iprofile } from '../../types';
+import { IProfile } from '../../types';
 
 import './current-account.scss';
 
 interface CurrentAccountProps {
   onClose: () => {};
-  account: number | null;
+  account: string;
 }
 
 const CureentAccount: React.FC<CurrentAccountProps> = (props) => {
   const currentAccounId = useSelector((state: RootState) => state.accountsReducer.activeAccount);
   const profiles = useSelector((state: RootState) => state.profilesReducer.profiles);
   const relatedProfiles = profiles.filter(item => item.belongAccountId === currentAccounId);
-  const [limitedProfiles, setProducts] = useState<Iprofile[]>([]);
+  const [limitedProfiles, setProducts] = useState<IProfile[]>([]);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -73,7 +73,7 @@ const CureentAccount: React.FC<CurrentAccountProps> = (props) => {
         </ul>
         {
           (profiles.length > 1)
-          ? <AppPaginate  filteredProfiles={relatedProfiles} setProducts={(p) => setProducts(p)} />
+          ? <AppPaginate  filteredProfiles={relatedProfiles} setProducts={(p) => setProducts(p as IProfile[])} />
           : null
         }
       </div>
