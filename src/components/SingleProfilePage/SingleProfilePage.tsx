@@ -1,17 +1,19 @@
 import { useParams } from 'react-router-dom';
 import useDataService from '../services/DataService';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCampaignData } from '../../actions/actions';
 import { AppDispatch, RootState } from '../../store/store';
 import { fetchProfilesById } from '../Profiles/profilesSlice';
 import CampaignList from '../CampaignList/CampaignList';
+import AppPaginate from '../AppPaginate';
 
 import './single-profile-page.scss'
 
 const SingleProfilePage = () => {
   const profile = useSelector((state: RootState) => state.profilesReducer.profile);
   const campaignsData = useSelector((state: RootState) => state.campaignReducer.campaigns);
+  const [products, setProducts] = useState([]);
   const { id } = useParams();
   const {fetchData} = useDataService();
   const dispatch = useDispatch<AppDispatch>();
@@ -44,8 +46,13 @@ const SingleProfilePage = () => {
             <div className='line'></div>
             {
               relatedCampaigns.length
-              ? <CampaignList campaigns={relatedCampaigns} />
+              ? <CampaignList campaigns={relatedCampaigns.length <= 5 ? relatedCampaigns : products} />
               : <div>There are no related company</div>
+            }
+            {
+              (relatedCampaigns.length > 5)
+              ? <AppPaginate  filteredProfiles={relatedCampaigns} setProducts={(p) => setProducts(p as never)} />
+              : null
             }
           </div>
         </div>

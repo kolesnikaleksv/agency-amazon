@@ -10,7 +10,7 @@ import './campaigns.scss'
 
 const Campaigns = () => {
   const campaigns = useSelector((state: RootState) => state.campaignReducer.campaigns);
-  const [products, setProducts] = useState([]);console.log(products);
+  const [products, setProducts] = useState([]);
   const {fetchData} = useDataService();
   const dispatch = useDispatch<AppDispatch>()
 
