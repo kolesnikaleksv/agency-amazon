@@ -28,3 +28,27 @@ export default {
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+## How To Use
+
+From your command line, clone and run Agency-Amazong:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/kolesnikaleksv/agency-amazon.git
+
+# Go into the repository
+$ cd AgencyAmazon
+
+# Install dependencies
+$ npm install
+
+#Start's development server
+$ npm start
+
+#Starts both the development server and the fake server with data on port 5000.
+$ npm run app-server
+```
+
+## Technologies Used:
+# React + TypeScript + Vite + Tailwind + Redux + Redux-Toolkit
