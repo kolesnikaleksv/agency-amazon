@@ -31,7 +31,7 @@ export default {
 
 ## How To Use
 
-From your command line, clone and run Agency-Amazong:
+From your command line, clone and run Agency-Amazon:
 
 ```bash
 # Clone this repository
