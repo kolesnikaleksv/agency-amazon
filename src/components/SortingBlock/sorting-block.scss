@@ -1,0 +1,26 @@
+form {
+  label {
+    @apply mr-2.5 text-gray;
+  }
+  
+  select {
+    @apply outline-none border border-solid border-gray p-1 rounded-xl font-semibold;
+  }
+}
+
+.profile__filter {
+  label {
+    @apply mr-2.5 text-gray;
+  }
+  input {
+    @apply bg-white text-gray rounded-md outline-none pt-0.5 px-1 pb-1 bg-transparent border border-solid border-light-gray shadow-filter;
+  }
+
+  input:hover {
+    @apply shadow-filter-hover;
+  }
+  
+  input:focus {
+    @apply text-gray  border-light-gray outline-none;
+  }
+}

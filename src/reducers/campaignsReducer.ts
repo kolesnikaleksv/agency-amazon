@@ -1,14 +1,23 @@
 import { PayloadAction, createReducer } from "@reduxjs/toolkit";
-import { campaignFetched, campaignFetching, campaignFetchingError } from "../actions/actions";
+import { 
+  activeCampaignFilter, 
+  campaignFetched, 
+  campaignFetching, 
+  campaignFetchingError, 
+  searchCampaignFilter } from "../actions/actions";
 import { ICampaign } from "../types";
 
 type ICampaigns = {
   campaigns: ICampaign[];
-  campaignLoadingStatus: 'idle' | 'error' | 'loading'
+  campaignLoadingStatus: 'idle' | 'error' | 'loading';
+  activeCampaignFilter: string;
+  searchCampaignFilter: string;
 }
 const initialState: ICampaigns = {
   campaigns: [],
-  campaignLoadingStatus: 'idle'
+  campaignLoadingStatus: 'idle',
+  activeCampaignFilter: 'All prices',
+  searchCampaignFilter: ''
 }
 
 const campaignReducer = createReducer(initialState, (builder) => {
@@ -22,6 +31,12 @@ const campaignReducer = createReducer(initialState, (builder) => {
     })
     .addCase(campaignFetchingError, state => {
       state.campaignLoadingStatus = 'error';
+    })
+    .addCase(activeCampaignFilter, (state, action: PayloadAction<string>) => {
+      state.activeCampaignFilter = action.payload;
+    })
+    .addCase(searchCampaignFilter, (state, action: PayloadAction<string>) => {
+      state.searchCampaignFilter = action.payload;
     })
 })
 

@@ -1,12 +1,10 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { activeAccount } from "../../actions/actions";
 import AccountItem from "../AccountItem/AccountItem";
 import { AppDispatch, RootState } from "../../store/store";
-import { DataType } from "../../types";
+import { IAccount } from "../../types";
 
-const AccountsList: React.FC<DataType> = ({data}) => {
-
+const AccountsList = ({data}:{data: IAccount[]}) => {
   const hasActiveOrderId = useSelector((state: RootState) => state.accountsReducer.activeAccount);
   const dispatch = useDispatch<AppDispatch>();
 

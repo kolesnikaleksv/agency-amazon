@@ -8,10 +8,6 @@ export interface AccountItemProps {
   name: 'account'
 }
 
-export type DataType = {
-  data: IAccount[]
-}
-
 export type IAccount = {
   accountId: string;
   title: string;
@@ -39,3 +35,5 @@ export type ICampaign = {
   belongProfileId: string;
   name: "campaign"
 }
+
+export type ProductTypes = ICampaign[] | IAccount[] | IProfile[];

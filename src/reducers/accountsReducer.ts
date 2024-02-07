@@ -6,7 +6,9 @@ import {
   activeAccount,
   closeActiveAccount,
   popupActive, 
-  closePopup} from "../actions/actions";
+  closePopup,
+  activeAccountFilter,
+  searchAccountFilter} from "../actions/actions";
 import { IAccount } from "../types";
 
 interface IState {
@@ -14,7 +16,9 @@ interface IState {
   accountsLoadingStatus: 'idle'  | 'loading' | 'error',
   activeAccount: string,
   popupActive: boolean,
-  popupItem: IAccount | null
+  popupItem: IAccount | null,
+  activeFilter: string,
+  searchFilter: string
 }
 
 const initialState: IState = {
@@ -22,7 +26,9 @@ const initialState: IState = {
   accountsLoadingStatus: 'idle',
   activeAccount: '',
   popupActive: false,
-  popupItem: null
+  popupItem: null,
+  activeFilter: 'All auth',
+  searchFilter: ''
 }
 
 const accountsReducer = createReducer(initialState, (builder) => {
@@ -43,12 +49,18 @@ const accountsReducer = createReducer(initialState, (builder) => {
     .addCase(closeActiveAccount, (state) => {
       state.activeAccount = '';
     })
-    .addCase(popupActive, (state, action: PayloadAction<IAccount> )=> {
+    .addCase(popupActive, (state, action: PayloadAction<IAccount> ) => {
       state.popupActive = true;
       state.popupItem = action.payload;
     })
-    .addCase(closePopup, (state )=> {
+    .addCase(closePopup, (state ) => {
       state.popupActive = false;
+    })
+    .addCase(activeAccountFilter, (state, action: PayloadAction<string>) => {
+      state.activeFilter = action.payload;
+    })
+    .addCase(searchAccountFilter, (state, action) => {
+      state.searchFilter = action.payload;
     })
     .addDefaultCase((state, action) => {})
 })

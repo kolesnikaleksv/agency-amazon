@@ -6,6 +6,7 @@ import ProfileList from '../ProfileLIst/ProfileList';
 import AppPaginate from '../AppPaginate';
 import { createSelector } from '@reduxjs/toolkit';
 import { IProfile } from '../../types';
+import SortingBlock from '../SortingBlock/SortingBlock';
 
 import './profiles.scss';
 
@@ -48,11 +49,7 @@ const Profiles = () => {
     typeSet.add(item.country)
   });
 
-  const optionsList = Array.from(typeSet).map(item => (
-    <option key={item} value={item}>
-      {item}
-    </option>
-  ));
+  const sortOption = Array.from(typeSet);
 
   useEffect(() => {
     dispatch(fetchProfiles())
@@ -63,24 +60,11 @@ const Profiles = () => {
     <div className='profile' data-testid="profile-page">
       <div className='profile__header'>
         <h1>Profiles / {currentProfiles.length}</h1>
-        <form action="#">
-          <label htmlFor="type">Type of products:</label>
-          <select name="types" id="type" onChange={(e) => dispatch(filterChanged(e.target.value))}>
-            {optionsList}
-          </select>
-        </form>
-        <div className='profile__filter'>
-        <label htmlFor="profile-filter">Filter profiles:</label>
-            <input
-                className='profile__filter--input'
-                type='search'
-                id='profile-filter'
-                name='profile-filter'
-                placeholder='Search'
-                aria-label='Search'
-                onChange={(e) => dispatch(searchFilter(e.target.value))}
-              />
-          </div>
+      <SortingBlock 
+        sortOption={sortOption} 
+        items={filteredProfiles} 
+        filterChange={(p) => dispatch(filterChanged(p))}
+        searchFilter={(p) => dispatch(searchFilter(p))}/>
 			</div>
       <div className='profile__body'>
         <ProfileList limitedProfiles={filteredProfiles.length > 5 ? limitedProfiles : filteredProfiles} />
