@@ -9,11 +9,12 @@ import CampaignList from '../CampaignList/CampaignList';
 import AppPaginate from '../AppPaginate';
 
 import './single-profile-page.scss'
+import { ICampaign } from '../../types';
 
 const SingleProfilePage = () => {
   const profile = useSelector((state: RootState) => state.profilesReducer.profile);
   const campaignsData = useSelector((state: RootState) => state.campaignReducer.campaigns);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<ICampaign[]>([]);
   const { id } = useParams();
   const {fetchData} = useDataService();
   const dispatch = useDispatch<AppDispatch>();
@@ -51,7 +52,7 @@ const SingleProfilePage = () => {
             }
             {
               (relatedCampaigns.length > 5)
-              ? <AppPaginate  filteredProfiles={relatedCampaigns} setProducts={(p) => setProducts(p as never)} />
+              ? <AppPaginate  filteredProfiles={relatedCampaigns} setProducts={(p) => setProducts(p as ICampaign[])} />
               : null
             }
           </div>

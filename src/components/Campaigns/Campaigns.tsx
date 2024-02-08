@@ -7,12 +7,13 @@ import useDataService from '../services/DataService';
 import AppPaginate from '../AppPaginate';
 import SortingBlock from '../SortingBlock/SortingBlock';
 import { createSelector } from '@reduxjs/toolkit';
+import { ICampaign } from '../../types';
 
 import './campaigns.scss'
 
 const Campaigns = () => {
   const campaigns = useSelector((state: RootState) => state.campaignReducer.campaigns);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<ICampaign[]>([]);
   const {fetchData} = useDataService();
   const dispatch = useDispatch<AppDispatch>();
   const filteredCampaignsSelector = createSelector(
@@ -74,7 +75,7 @@ const Campaigns = () => {
         }
         {
           filteredCampaigns.length > 5
-          ? <AppPaginate filteredProfiles={filteredCampaigns} setProducts={(p) => setProducts(p as never)}/>
+          ? <AppPaginate filteredProfiles={filteredCampaigns} setProducts={(p) => setProducts(p as ICampaign[])}/>
           : null
         }
       </div>
